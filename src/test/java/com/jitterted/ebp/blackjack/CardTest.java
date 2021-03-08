@@ -1,6 +1,5 @@
 package com.jitterted.ebp.blackjack;
 
-import com.jitterted.ebp.blackjack.Card;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -18,7 +17,7 @@ class CardTest {
 
   @Test
   public void withValueOfQueenHasNumericValueOf10() throws Exception {
-    Card card = new Card("X", "Q");
+    Card card = new Card("don't care", "Q");
 
     assertThat(card.rankValue())
         .isEqualTo(10);

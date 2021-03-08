@@ -1,7 +1,5 @@
 package com.jitterted.ebp.blackjack;
 
-import com.jitterted.ebp.blackjack.Card;
-import com.jitterted.ebp.blackjack.Deck;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
