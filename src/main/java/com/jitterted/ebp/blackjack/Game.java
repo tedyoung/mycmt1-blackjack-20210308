@@ -53,15 +53,11 @@ public class Game {
 
   private void dealRoundOfCards() {
     // deal cards players first (rule of Blackjack)
-    dealCardToPlayer();
-    dealCardToDealer();
+    dealCardTo(playerHand);
+    dealCardTo(dealerHand);
   }
 
-  private void dealCardToDealer() {
-    dealerHand.add(deck.draw());
-  }
-
-  private void dealCardToPlayer() {
+  private void dealCardTo(List<Card> playerHand) {
     playerHand.add(deck.draw());
   }
 
@@ -103,7 +99,7 @@ public class Game {
     // Dealer makes its choice automatically based on a simple heuristic (<=16, hit, 17>stand)
     if (!playerBusted) {
       while (handValueOf(dealerHand) <= 16) {
-        dealCardToDealer();
+        dealCardTo(dealerHand);
       }
     }
   }
@@ -116,7 +112,7 @@ public class Game {
         break;
       }
       if (playerHits(playerChoice)) {
-        dealCardToPlayer();
+        dealCardTo(playerHand);
         if (isPlayerBusted()) {
           playerBusted = true;
         }
