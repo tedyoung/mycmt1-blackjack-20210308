@@ -12,6 +12,8 @@ public class Game {
 
   private final Hand dealerHand = new Hand();
   private final Hand playerHand = new Hand();
+  private int playerBalance = 0;
+  private int playerBetAmount = 0;
 
   public static void main(String[] args) {
     displayWelcomeScreen();
@@ -64,20 +66,6 @@ public class Game {
     displayFinalGameState();
 
     determineOutcome(playerBusted);
-  }
-
-  private void determineOutcome(boolean playerBusted) {
-    if (playerBusted) {
-      System.out.println("You Busted, so you lose.  💸");
-    } else if (dealerHand.isBusted()) {
-      System.out.println("Dealer went BUST, Player wins! Yay for you!! 💵");
-    } else if (playerHand.beats(dealerHand)) {
-      System.out.println("You beat the Dealer! 💵");
-    } else if (dealerHand.pushes(playerHand)) {
-      System.out.println("Push: The house wins, you Lose. 💸");
-    } else {
-      System.out.println("You lost to the Dealer. 💸");
-    }
   }
 
   private void dealerTurn(boolean playerBusted) {
@@ -162,4 +150,40 @@ public class Game {
             .a("└─────────┘"));
   }
 
+  private void determineOutcome(boolean playerBusted) {
+    if (playerBusted) {
+      System.out.println("You Busted, so you lose.  💸");
+//      playerLoses();
+    } else if (dealerHand.isBusted()) {
+      System.out.println("Dealer went BUST, Player wins! Yay for you!! 💵");
+//      playerWins();
+    } else if (playerHand.beats(dealerHand)) {
+      System.out.println("You beat the Dealer! 💵");
+//      playerWins();
+    } else if (dealerHand.pushes(playerHand)) {
+      System.out.println("Push: The house wins, you Lose. 💸");
+//      playerPushes();
+    } else {
+      System.out.println("You lost to the Dealer. 💸");
+//      playerLoses();
+    }
+  }
+
+
+  public int playerBalance() {
+    return playerBalance;
+  }
+
+  public void playerDeposits(int amount) {
+    playerBalance += amount;
+  }
+
+  public void playerBets(int betAmount) {
+    playerBalance -= betAmount;
+    playerBetAmount = betAmount;
+  }
+
+  public void playerWins() {
+    playerBalance += playerBetAmount * 2;
+  }
 }
