@@ -23,4 +23,33 @@ public class WalletTest {
     assertThat(wallet.isEmpty())
         .isFalse();
   }
+
+  @Test
+  public void newWalletHasZeroBalance() throws Exception {
+    Wallet wallet = new Wallet();
+
+    assertThat(wallet.balance())
+        .isZero();
+  }
+
+  @Test
+  public void newWalletAdd10BalanceIs10() throws Exception {
+    Wallet wallet = new Wallet();
+
+    wallet.addMoney(10);
+
+    assertThat(wallet.balance())
+        .isEqualTo(10);
+  }
+
+  @Test
+  public void newWalletAdd12AndAdd13BalanceIs25() throws Exception {
+    Wallet wallet = new Wallet();
+
+    wallet.addMoney(12);
+    wallet.addMoney(13);
+
+    assertThat(wallet.balance())
+        .isEqualTo(12 + 13);
+  }
 }
